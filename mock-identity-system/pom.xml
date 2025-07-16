@@ -51,7 +51,7 @@
 
 		<!-- Core -->
 		<spring-cloud-config.version>2.2.7.RELEASE</spring-cloud-config.version>
-		<spring-jms.version>5.0.16.RELEASE</spring-jms.versfion>
+		<spring-jms.version>5.0.16.RELEASE</spring-jms.version>
 
 
 		<!--  Others -->
