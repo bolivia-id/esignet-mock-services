@@ -2,24 +2,25 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import Select from "react-select";
 
-export default function NavHeader({ langOptions, i18nKeyPrefix = "background" }) {
+export default function NavHeader({i18nKeyPrefix = "background" }) {
   const { t, i18n } = useTranslation("translation", {
     keyPrefix: i18nKeyPrefix,
   });
-  const [selectedLang, setSelectedLang] = useState();
+  const [selectedLang, setSelectedLang] = useState({label: "Español", value: "es" });
   // fallback language from the environment configuration
-  const fallbackLangObj = window._env_.FALLBACK_LANG
-    ? decodeURIComponent(window._env_.FALLBACK_LANG)
-    : "";
+  // const fallbackLangObj = window._env_.FALLBACK_LANG
+  //   ? decodeURIComponent(window._env_.FALLBACK_LANG)
+  //   : "";
   // converting it to JSON, and if the fallback language
   // is also not present, taking english as default
-  const fallbackLang =
-    fallbackLangObj !== ""
-      ? JSON.parse(fallbackLangObj)
-      : { label: "Español", value: "es" };
+  const fallbackLang ={label: "Español", value: "es"};
+    // fallbackLangObj !== ""
+    //   ? JSON.parse(fallbackLangObj)
+    //   : { label: "Español", value: "es" };
 
-  const changeLanguageHandler = (e) => {
-    i18n.changeLanguage(e.value);
+  const changeLanguageHandler = () => {
+    i18n.changeLanguage("es");
+    setSelectedLang(fallbackLang);
   };
 
   const customStyles = {
@@ -34,21 +35,23 @@ export default function NavHeader({ langOptions, i18nKeyPrefix = "background" })
   // which came through langCnfigService
   // then setting that language as selected one
   const setLanguage = (lng) => {
-    let lang = langOptions.find((op) => op.value === lng);
-    setSelectedLang(lang ?? fallbackLang);
+    setSelectedLang(fallbackLang);
+    // let lang = langOptions.find((op) => op.value === lng);
+    // setSelectedLang(lang ?? fallbackLang);
   };
 
   useEffect(() => {
-    if (!langOptions || langOptions.length === 0) {
-      return;
-    }
+    i18n.changeLanguage("es");
 
     setLanguage(i18n.language);
     //Gets fired when changeLanguage got called.
     i18n.on("languageChanged", function (lng) {
-      setLanguage(lng);
+       if (lng !== "es") {
+        i18n.changeLanguage("es");
+      }
+      setSelectedLang(fallbackLang);
     });
-  }, [langOptions]);
+  }, []);
 
   const navList = [
     { label: "home", url: "\\" },
@@ -76,7 +79,8 @@ export default function NavHeader({ langOptions, i18nKeyPrefix = "background" })
             isSearchable={false}
             className="appearance-none"
             value={selectedLang}
-            options={langOptions}
+            // options={langOptions}
+             options={[fallbackLang]}
             placeholder="Language"
             onChange={changeLanguageHandler}
           />
