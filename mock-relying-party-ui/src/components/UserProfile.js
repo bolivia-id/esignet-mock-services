@@ -80,10 +80,8 @@ export default function UserProfile({
         redirect_uri,
         grant_type
       );
-       console.log("userInfo?.address",userInfo?.address);
-       
+
       let address = getAddress(userInfo?.address);
-      console.log("address",address)
       setAddress(address);
       setUserInfo(userInfo);
       setEmailAddress(userInfo?.email_verified ?? userInfo?.email);
@@ -166,8 +164,7 @@ export default function UserProfile({
                 alt={t("profile_picture")}
                 className="h-20 w-20"
                 src={
-                  lll
-                 // userInfo?.picture ? userInfo.picture : "User-Profile-Icon.png"
+                  userInfo?.picture ? userInfo.picture : "User-Profile-Icon.png"
                 }
               />
             </div>
@@ -203,7 +200,7 @@ export default function UserProfile({
               </div>
               <div className="px-4 py-3 grid grid-cols-2">
                 <div className="flex justify-start">{t("address")}</div>
-                <div className="flex justify-end">{userInfo?.address}</div>
+                <div className="flex justify-end">{address}</div>
               </div>
             </div>
             <div className="px-4">

@@ -97,6 +97,8 @@ export default function Sidenav({
         grant_type
       );
       let address = getAddress(userInfo?.address);
+      console.log("userInfo?.address",userInfo?.address);
+      
       setAddress(address);
       setUserInfo(userInfo);
       setEmailAddress(userInfo?.email_verified ?? userInfo?.email);
@@ -107,6 +109,7 @@ export default function Sidenav({
       if (localStorage.getItem(userInfo_keyname)) {
         let userInf = JSON.parse(localStorage.getItem(userInfo_keyname));
         let address = getAddress(userInf?.address);
+        
         setAddress(address);
         setEmailAddress(userInf?.email_verified ?? userInf?.email);
         setUserInfo(userInf);
