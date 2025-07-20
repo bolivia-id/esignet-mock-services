@@ -80,8 +80,10 @@ export default function UserProfile({
         redirect_uri,
         grant_type
       );
-
+       console.log("userInfo?.address",userInfo?.address);
+       
       let address = getAddress(userInfo?.address);
+      console.log("address",address)
       setAddress(address);
       setUserInfo(userInfo);
       setEmailAddress(userInfo?.email_verified ?? userInfo?.email);
