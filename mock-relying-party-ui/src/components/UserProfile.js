@@ -166,7 +166,8 @@ export default function UserProfile({
                 alt={t("profile_picture")}
                 className="h-20 w-20"
                 src={
-                  userInfo?.picture ? userInfo.picture : "User-Profile-Icon.png"
+                  lll
+                 // userInfo?.picture ? userInfo.picture : "User-Profile-Icon.png"
                 }
               />
             </div>
@@ -202,7 +203,7 @@ export default function UserProfile({
               </div>
               <div className="px-4 py-3 grid grid-cols-2">
                 <div className="flex justify-start">{t("address")}</div>
-                <div className="flex justify-end">{address}</div>
+                <div className="flex justify-end">{userInfo?.address}</div>
               </div>
             </div>
             <div className="px-4">
