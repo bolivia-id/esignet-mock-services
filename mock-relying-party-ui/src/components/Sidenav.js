@@ -536,7 +536,7 @@ export default function Sidenav({
                           {t("mobile_no")}: {userInfo?.phone_number}
                         </a>
                         <a className="px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900">
-                          {t("address")}: {address}
+                          {t("address")}: {address ? address : userInfo?.address}
                         </a>
                         <button
                           className="w-full ltr:text-left rtl:text-right block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
